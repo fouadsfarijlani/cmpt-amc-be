@@ -12,6 +12,7 @@ class Vacancy(Base):
     vacancy_hours_id = Column(ForeignKey("vacancy_hours.id"))
 
     vacancy_category = relationship("VacancyCategory", back_populates = "vacancy")
+    vacancy_descriptions = relationship("VacancyDescription", back_populates = "vacancy")
     vacancy_hours = relationship("VacancyHours", back_populates="vacancy")
 
 class VacancyHours(Base):
@@ -36,8 +37,10 @@ class VacancyDescription(Base):
 
     id = Column(Integer, primary_key = True, index = True, nullable = False, autoincrement = True)
     description = Column(String)
+    vacancy_id = Column(ForeignKey("vacancy.id"))
     vacancy_description_tag_id = Column(ForeignKey("vacancy_description_tag.id"))
 
+    vacancy = relationship("vacancy", back_populates = "vacancy_descriptions")
     vacancy_description_tag = relationship("VacancyDescriptionTag", back_populates = "vacancy_description")
 
 class VacancyDescriptionTag(Base):
