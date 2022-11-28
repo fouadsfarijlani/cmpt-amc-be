@@ -36,3 +36,10 @@ class VacancyDescription(Base):
 
     id = Column(Integer, primary_key = True, index = True, nullable = False, autoincrement = True)
     description = Column(String)
+
+class VacancyDescriptionTag(Base):
+    __tablename__ = "vacancy_description_tag"
+
+    id = Column(Integer, primary_key = True, index = True, nullable = False, autoincrement = True)
+    type = Column(String, nullable = False)
+    
