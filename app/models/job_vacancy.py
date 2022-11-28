@@ -30,3 +30,9 @@ class VacancyCategory(Base):
     description = Column(String)
 
     relationship("Vacancy", back_populates = "vacancy_hours", uselist = False)
+
+class VacancyDescription(Base):
+    __tablename__ = "vacancy_description"
+
+    id = Column(Integer, primary_key = True, index = True, nullable = False, autoincrement = True)
+    description = Column(String)
