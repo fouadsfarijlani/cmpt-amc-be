@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+
+  wbso-postgres:
+    image: postgres
+    restart: "no"
+    ports:
+      - 5432:5432
+    container_name: CmptAmcDB
+    environment:
+      POSTGRES_PASSWORD: 123abc123
+      POSTGRES_USER: "postgres_sa"
