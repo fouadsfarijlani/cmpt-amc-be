@@ -29,17 +29,22 @@ class VacancyCategory(Base):
     type = Column(String, nullable = False)
     description = Column(String)
 
-    relationship("Vacancy", back_populates = "vacancy_hours", uselist = False)
+    vacancy = relationship("Vacancy", back_populates = "vacancy_hours", uselist = False)
 
 class VacancyDescription(Base):
     __tablename__ = "vacancy_description"
 
     id = Column(Integer, primary_key = True, index = True, nullable = False, autoincrement = True)
     description = Column(String)
+    vacancy_description_tag_id = Column(ForeignKey("vacancy_description_tag.id"))
+
+    vacancy_description_tag = relationship("VacancyDescriptionTag", back_populates = "vacancy_description")
 
 class VacancyDescriptionTag(Base):
     __tablename__ = "vacancy_description_tag"
 
     id = Column(Integer, primary_key = True, index = True, nullable = False, autoincrement = True)
     type = Column(String, nullable = False)
+
+    vacancy_description = relationship("VacancyDescription", back_populates = "vacancy_description_tag", uselist = False)
     
