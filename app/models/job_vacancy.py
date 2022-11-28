@@ -16,6 +16,13 @@ class VacancyHours(Base):
     __tablename__ = "vacancy_hours"
 
     id = Column(Integer, primary_key = True, index = True, nullable = False, autoincrement = True)
-    hours_category = Column(String, nullable = False)
+    category = Column(String, nullable = False)
 
     vacancy = relationship("Vacancy", back_populates="vacancy_hours", uselist=False)
+
+class VacancyCategory(Base):
+    __tablename__ = "vacancy_category"
+
+    id = Column(Integer, primary_key = True, index = True, nullable = False, autoincrement = True)
+    type = Column(String, nullable = False)
+    description = Column(String)
