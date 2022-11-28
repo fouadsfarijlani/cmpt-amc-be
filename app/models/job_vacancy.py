@@ -8,8 +8,10 @@ class Vacancy(Base):
     id = Column(Integer, primary_key = True, index = True, nullable = False, autoincrement = True)
     title = Column(String, nullable=False)
     active = Column(Boolean)
-    hours_category_id = Column(ForeignKey("vacancy_hours.id"))
+    vacancy_category_id = Column(ForeignKey("vacancy_category.id"))
+    vacancy_hours_id = Column(ForeignKey("vacancy_hours.id"))
 
+    vacancy_category = relationship("VacancyCategory", back_populates = "vacancy")
     vacancy_hours = relationship("VacancyHours", back_populates="vacancy")
 
 class VacancyHours(Base):
@@ -26,3 +28,5 @@ class VacancyCategory(Base):
     id = Column(Integer, primary_key = True, index = True, nullable = False, autoincrement = True)
     type = Column(String, nullable = False)
     description = Column(String)
+
+    relationship("Vacancy", back_populates = "vacancy_hours", uselist = False)
